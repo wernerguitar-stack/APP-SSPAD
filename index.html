@@ -26,14 +26,9 @@
 </head>
 <body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex flex-col justify-between selection:bg-brand-orange selection:text-white">
 
-    <!-- Top Bar / Settings Trigger -->
-    <header class="w-full bg-white shadow-sm py-3 px-4 flex justify-between items-center relative z-20">
-        <div class="flex items-center space-x-2">
-            <span class="text-xs font-semibold text-brand-navy tracking-wider uppercase">Portal de Telemedicina</span>
-        </div>
-        <button onclick="toggleSettingsModal()" class="text-slate-400 hover:text-brand-navy p-2 rounded-full transition" title="Configurações">
-            <i class="fa-solid fa-gear text-lg"></i>
-        </button>
+    <!-- Top Bar Limpa -->
+    <header class="w-full bg-white shadow-sm py-3.5 px-4 flex justify-center items-center relative z-20">
+        <span class="text-xs font-semibold text-brand-navy tracking-wider uppercase">Portal de Telemedicina</span>
     </header>
 
     <!-- Main Container -->
@@ -140,15 +135,15 @@
                         <div>
                             <p class="font-semibold mb-1">Informações sobre o plano para Não Associados:</p>
                             <p class="text-amber-800 leading-relaxed">
-                                Para não associados, o valor mensal do plano é <strong>R$ 14,90</strong> (pagamento mensal). Para concluir seu cadastro e usufruir da telemedicina, você deverá realizar o pagamento do valor por PIX e enviar o comprovante.
+                                Para não associados, há duas opções: plano mensal via <strong>PIX</strong> (R$ 14,90/mês) ou o <strong>Plano Anual via Cartão de Crédito</strong> (onde você paga 12 meses e ganha 13 meses (1 mês grátis) — parcelado em até 03x sem juros ou até 12x com acréscimo da operadora).
                             </p>
-                            <p class="text-amber-700 mt-2 font-medium">Em até 24h seu acesso à telemedicina será liberado após a confirmação do envio do comprovante.</p>
+                            <p class="text-amber-700 mt-2 font-medium">Em até 24h seu acesso à telemedicina será liberado após a confirmação do pagamento.</p>
                         </div>
                     </div>
                     <div class="pt-2 border-t border-amber-200/60">
                         <label class="flex items-start space-x-2 cursor-pointer">
                             <input type="checkbox" id="ciencia_pix" name="cienciaPix" class="mt-0.5 text-amber-600 rounded focus:ring-amber-500">
-                            <span class="font-semibold text-amber-900 text-xs">Estou ciente da necessidade de pagamento mensal via PIX para ativação.</span>
+                            <span class="font-semibold text-amber-900 text-xs">Estou ciente das condições de pagamento para ativação do serviço.</span>
                         </label>
                     </div>
                 </div>
@@ -255,25 +250,48 @@
                 Seus dados foram enviados com sucesso para nossa central.
             </p>
 
-            <!-- Box PIX Dinâmico para Não Associados -->
-            <div id="pix-container" class="hidden bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 text-left space-y-3">
+            <!-- Box Pagamento para Não Associados -->
+            <div id="pix-container" class="hidden bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 text-left space-y-4">
                 <div class="flex items-center space-x-2 text-amber-900 font-bold text-sm">
-                    <i class="fa-solid fa-qrcode text-amber-600"></i>
-                    <span>Instruções de Pagamento (PIX)</span>
+                    <i class="fa-solid fa-wallet text-amber-600"></i>
+                    <span>Formas de Pagamento (Não Associados)</span>
                 </div>
                 <p class="text-xs text-amber-800">
-                    Valor mensal: <strong>R$ 14,90</strong><br>
-                    Realize o PIX para a chave abaixo:
+                    Escolha uma das opções abaixo para concluir:
                 </p>
-                <div class="bg-white p-2.5 rounded border border-amber-300 flex items-center justify-between">
-                    <span id="display-pix" class="text-xs font-mono font-bold text-slate-800 select-all">CHAVE_PIX_AQUI</span>
-                    <button onclick="copiarChavePix()" class="text-xs bg-amber-600 hover:bg-amber-700 text-white px-2.5 py-1 rounded transition">Copiar</button>
+
+                <!-- Opção 1: PIX / PIX Recorrente -->
+                <div class="bg-white p-3 rounded-lg border border-amber-300 space-y-2">
+                    <p class="text-xs font-bold text-slate-800"><i class="fa-solid fa-qrcode text-emerald-600"></i> Opção 1: Plano Mensal via PIX (R$ 14,90/mês)</p>
+                    <div class="flex items-center justify-between bg-slate-50 p-2 rounded border">
+                        <span id="display-pix" class="text-xs font-mono font-bold text-slate-800 select-all">CHAVE_PIX_AQUI</span>
+                        <button onclick="copiarChavePix()" class="text-xs bg-amber-600 hover:bg-amber-700 text-white px-2.5 py-1 rounded transition">Copiar</button>
+                    </div>
+                    <p class="text-[10px] text-slate-500 leading-tight">
+                        💡 <strong>PIX Recorrente:</strong> Você pode configurar um <strong>PIX Recorrente ou Automático</strong> no app do seu banco para descontar mensalmente, ou realizar a transferência avulsa a cada mês.
+                    </p>
                 </div>
-                <p class="text-[11px] text-amber-800 leading-tight">
-                    Após o pagamento, envie o comprovante para o WhatsApp abaixo. Em até 24h seu acesso será liberado.
+
+                <!-- Opção 2: Cartão de Crédito - Plano Anual (Pague 12, Leve 13) -->
+                <div class="bg-white p-3 rounded-lg border border-amber-300 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <p class="text-xs font-bold text-slate-800"><i class="fa-solid fa-credit-card text-brand-navy"></i> Opção 2: Plano Anual (Cartão)</p>
+                        <span class="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2 py-0.5 rounded-full">Pague 12, Leve 13 (1 Mês Grátis)</span>
+                    </div>
+                    <p class="text-[11px] text-slate-600">
+                        Parcele o plano anual em até 03x sem juros ou até 12x com acréscimo da operadora e ganhe 1 mês de acesso grátis:
+                    </p>
+                    <a id="credit-link-btn" href="#" target="_blank" class="w-full bg-brand-navy hover:bg-blue-900 text-white text-xs font-semibold py-2.5 px-4 rounded-lg flex items-center justify-center space-x-2 transition">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        <span>Pagar Plano Anual</span>
+                    </a>
+                </div>
+
+                <p class="text-[11px] text-amber-800 leading-tight pt-1">
+                    Após realizar o pagamento, envie o comprovante para o WhatsApp abaixo. Em até 24h seu acesso será liberado.
                 </p>
-                <div class="pt-2">
-                    <a id="whatsapp-link" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold py-2 px-4 rounded-lg flex items-center justify-center space-x-2 transition">
+                <div class="pt-1">
+                    <a id="whatsapp-link" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold py-2.5 px-4 rounded-lg flex items-center justify-center space-x-2 transition">
                         <i class="fa-brands fa-whatsapp text-sm"></i>
                         <span>Enviar Comprovante via WhatsApp</span>
                     </a>
@@ -298,78 +316,21 @@
 
     </main>
 
-    <!-- Modal de Configurações -->
-    <div id="settings-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 relative">
-            <button onclick="toggleSettingsModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-            <h3 class="text-lg font-bold text-brand-navy mb-4">Configurações do App</h3>
-            
-            <div class="space-y-3 text-left">
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">URL do Webhook (Google Sheets)</label>
-                    <input type="text" id="config-webhook" class="w-full px-3 py-2 border rounded-lg text-xs" placeholder="https://script.google.com/macros/s/.../exec">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Chave PIX (Não Associados)</label>
-                    <input type="text" id="config-pix" class="w-full px-3 py-2 border rounded-lg text-xs" placeholder="CNPJ, E-mail, Telefone ou Chave Aleatória">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">WhatsApp para Comprovante (com DDD)</label>
-                    <input type="text" id="config-whatsapp" class="w-full px-3 py-2 border rounded-lg text-xs" placeholder="5541999999999">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">URL do Portal de Telemedicina</label>
-                    <input type="text" id="config-portal" class="w-full px-3 py-2 border rounded-lg text-xs" placeholder="https://medqualividatelemedicina.lsxmedical.com/">
-                </div>
-            </div>
-
-            <div class="mt-6 flex space-x-3">
-                <button onclick="salvarConfiguracoes()" class="flex-1 bg-brand-navy text-white py-2.5 rounded-xl font-semibold text-sm hover:bg-blue-900 transition">Salvar</button>
-                <button onclick="toggleSettingsModal()" class="px-4 bg-slate-100 text-slate-600 py-2.5 rounded-xl font-semibold text-sm hover:bg-slate-200 transition">Cancelar</button>
-            </div>
-        </div>
-    </div>
-
     <!-- JavaScript Principal -->
     <script>
-        // Configurações padrão
-        let config = {
-            webhookUrl: localStorage.getItem('med_webhook') || '',
-            pixKey: localStorage.getItem('med_pix') || '41 99999-9999 (Chave PIX Exemplo)',
-            whatsappNum: localStorage.getItem('med_whatsapp') || '5541999999999',
-            portalUrl: localStorage.getItem('med_portal') || 'https://medqualividatelemedicina.lsxmedical.com/'
+        // =====================================================================
+        // CONFIGURAÇÕES INTERNAS (PREENCHA SEUS DADOS REAIS AQUI ANTES DE SUBIR)
+        // =====================================================================
+        const CONFIG = {
+            webhookUrl: '', // Cole aqui a URL do Google Apps Script / Webhook do Google Sheets
+            pixKey: '63643418000137', // Cole aqui a Chave PIX
+            creditLink: 'https://link.infinitepay.io/werner-splett/VC1DLTMtSQ-u5LGSEev8s-179,00', // Cole aqui o link da InfinityPay
+            whatsappNum: '554198301958', // Cole aqui o WhatsApp com 55 + DDD + Número (somente números)
+            portalUrl: 'https://medqualividatelemedicina.lsxmedical.com/'
         };
 
-        function toggleSettingsModal() {
-            const modal = document.getElementById('settings-modal');
-            modal.classList.toggle('hidden');
-            if (!modal.classList.contains('hidden')) {
-                document.getElementById('config-webhook').value = config.webhookUrl;
-                document.getElementById('config-pix').value = config.pixKey;
-                document.getElementById('config-whatsapp').value = config.whatsappNum;
-                document.getElementById('config-portal').value = config.portalUrl;
-            }
-        }
-
-        function salvarConfiguracoes() {
-            config.webhookUrl = document.getElementById('config-webhook').value.trim();
-            config.pixKey = document.getElementById('config-pix').value.trim();
-            config.whatsappNum = document.getElementById('config-whatsapp').value.trim();
-            config.portalUrl = document.getElementById('config-portal').value.trim();
-
-            localStorage.setItem('med_webhook', config.webhookUrl);
-            localStorage.setItem('med_pix', config.pixKey);
-            localStorage.setItem('med_whatsapp', config.whatsappNum);
-            localStorage.setItem('med_portal', config.portalUrl);
-
-            toggleSettingsModal();
-            alert('Configurações salvas com sucesso!');
-        }
-
         function goToPortal() {
-            window.open(config.portalUrl, '_blank');
+            window.open(CONFIG.portalUrl, '_blank');
         }
 
         function goToForm() {
@@ -498,9 +459,9 @@
             btnSpinner.classList.remove('hidden');
 
             // Envio para o Webhook (se configurado)
-            if (config.webhookUrl) {
+            if (CONFIG.webhookUrl) {
                 try {
-                    await fetch(config.webhookUrl, {
+                    await fetch(CONFIG.webhookUrl, {
                         method: 'POST',
                         mode: 'no-cors',
                         headers: { 'Content-Type': 'application/json' },
@@ -530,12 +491,13 @@
                 } else {
                     associadoContainer.classList.add('hidden');
                     pixContainer.classList.remove('hidden');
-                    successMessage.textContent = 'Cadastro efetuado! Resta apenas a confirmação do pagamento mensal.';
+                    successMessage.textContent = 'Cadastro efetuado! Resta apenas a confirmação do pagamento.';
                     
-                    document.getElementById('display-pix').textContent = config.pixKey;
+                    document.getElementById('display-pix').textContent = CONFIG.pixKey;
+                    document.getElementById('credit-link-btn').href = CONFIG.creditLink;
                     
-                    let msgZap = encodeURIComponent(`Olá, realizei meu cadastro de não associado no app SSPAD Telemedicina (Nome: ${formData.nome} ${formData.sobrenome}, CPF: ${formData.cpf}). Segue o comprovante de pagamento PIX de R$ 14,90.`);
-                    document.getElementById('whatsapp-link').href = `https://wa.me/${config.whatsappNum}?text=${msgZap}`;
+                    let msgZap = encodeURIComponent(`Olá, realizei meu cadastro de não associado no app SSPAD Telemedicina (Nome: ${formData.nome} ${formData.sobrenome}, CPF: ${formData.cpf}). Segue o comprovante.`);
+                    document.getElementById('whatsapp-link').href = `https://wa.me/${CONFIG.whatsappNum}?text=${msgZap}`;
                 }
                 window.scrollTo(0, 0);
             }, 1000);
