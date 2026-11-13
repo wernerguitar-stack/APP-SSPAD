@@ -113,14 +113,17 @@
                     <div class="flex items-start space-x-2">
                         <i class="fa-solid fa-circle-info text-blue-600 mt-0.5"></i>
                         <div>
-                            <p class="font-semibold mb-1">Informações sobre o plano para Associados:</p>
+                            <p class="font-semibold mb-1">Plano para Associados:</p>
                             <p class="text-blue-800 leading-relaxed">
-                                Para associados à SSPAD, o pagamento da Mensalidade de Telemedicina no valor de <strong>R$ 12,90</strong> será descontado mensalmente em folha de pagamento <em>(sujeito à disponibilidade de limite de descontos consignáveis)</em>.
+                                Mensalidade de <strong>R$ 12,90</strong> descontada em folha de pagamento (sujeito à disponibilidade de margem). Liberação em até 24h.
                             </p>
-                            <p class="text-blue-700 mt-2 font-medium">O benefício leva até 24h para ser liberado após a validação.</p>
                         </div>
                     </div>
-                    <div class="pt-2 border-t border-blue-200/60">
+                    <div>
+                        <label class="block text-xs font-semibold text-blue-900 mb-1">Número de sua Matrícula no SSPAD <span class="text-red-500">*</span></label>
+                        <input type="text" id="matricula" name="matricula" class="w-full px-3 py-2 border border-blue-300 rounded-lg text-sm bg-white focus:ring-2 focus:ring-brand-navy focus:outline-none" placeholder="Digite sua matrícula">
+                    </div>
+                    <div class="pt-1">
                         <label class="flex items-start space-x-2 cursor-pointer">
                             <input type="checkbox" id="autorizacao_desconto" name="autorizacaoDesconto" class="mt-0.5 text-blue-600 rounded focus:ring-blue-500">
                             <span class="font-semibold text-blue-900 text-xs">Autorizo o desconto da mensalidade em folha de pagamento.</span>
@@ -133,18 +136,17 @@
                     <div class="flex items-start space-x-2">
                         <i class="fa-solid fa-triangle-exclamation text-amber-600 mt-0.5"></i>
                         <div>
-                            <p class="font-semibold mb-1">Informações sobre o plano para Não Associados:</p>
+                            <p class="font-semibold mb-1">Atenção:</p>
                             <p class="text-amber-800 leading-relaxed">
-                                Para não associados, há duas opções: plano mensal via <strong>PIX</strong> (R$ 14,90/mês) ou o <strong>Plano Anual via Cartão de Crédito</strong> (onde você paga 12 meses e ganha 13 meses (1 mês grátis) — parcelado em até 03x sem juros ou até 12x com acréscimo da operadora).
+                                Para ter acesso aos benefícios exclusivos de associado, você pode se filiar ao sindicato.
                             </p>
-                            <p class="text-amber-700 mt-2 font-medium">Em até 24h seu acesso à telemedicina será liberado após a confirmação do pagamento.</p>
                         </div>
                     </div>
-                    <div class="pt-2 border-t border-amber-200/60">
-                        <label class="flex items-start space-x-2 cursor-pointer">
-                            <input type="checkbox" id="ciencia_pix" name="cienciaPix" class="mt-0.5 text-amber-600 rounded focus:ring-amber-500">
-                            <span class="font-semibold text-amber-900 text-xs">Estou ciente das condições de pagamento para ativação do serviço.</span>
-                        </label>
+                    <div class="pt-2">
+                        <a id="association-btn" href="#" target="_blank" class="inline-flex items-center space-x-2 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold py-2.5 px-4 rounded-xl shadow transition">
+                            <i class="fa-solid fa-user-plus"></i>
+                            <span>> Clique aqui para se associar</span>
+                        </a>
                     </div>
                 </div>
 
@@ -247,69 +249,10 @@
             
             <h2 class="text-2xl font-bold text-brand-navy mb-2">Cadastro Realizado!</h2>
             <p id="success-message" class="text-sm text-slate-600 mb-6 leading-relaxed">
-                Seus dados foram enviados com sucesso para nossa central.
+                Seus dados foram enviados com sucesso para nossa central. Em breve entraremos em contato.
             </p>
 
-            <!-- Box Pagamento para Não Associados -->
-            <div id="pix-container" class="hidden bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 text-left space-y-4">
-                <div class="flex items-center space-x-2 text-amber-900 font-bold text-sm">
-                    <i class="fa-solid fa-wallet text-amber-600"></i>
-                    <span>Formas de Pagamento (Não Associados)</span>
-                </div>
-                <p class="text-xs text-amber-800">
-                    Escolha uma das opções abaixo para concluir:
-                </p>
-
-                <!-- Opção 1: PIX / PIX Recorrente -->
-                <div class="bg-white p-3 rounded-lg border border-amber-300 space-y-2">
-                    <p class="text-xs font-bold text-slate-800"><i class="fa-solid fa-qrcode text-emerald-600"></i> Opção 1: Plano Mensal via PIX (R$ 14,90/mês)</p>
-                    <div class="flex items-center justify-between bg-slate-50 p-2 rounded border">
-                        <span id="display-pix" class="text-xs font-mono font-bold text-slate-800 select-all">CHAVE_PIX_AQUI</span>
-                        <button onclick="copiarChavePix()" class="text-xs bg-amber-600 hover:bg-amber-700 text-white px-2.5 py-1 rounded transition">Copiar</button>
-                    </div>
-                    <p class="text-[10px] text-slate-500 leading-tight">
-                        💡 <strong>PIX Recorrente:</strong> Você pode configurar um <strong>PIX Recorrente ou Automático</strong> no app do seu banco para descontar mensalmente, ou realizar a transferência avulsa a cada mês.
-                    </p>
-                </div>
-
-                <!-- Opção 2: Cartão de Crédito - Plano Anual (Pague 12, Leve 13) -->
-                <div class="bg-white p-3 rounded-lg border border-amber-300 space-y-2">
-                    <div class="flex items-center justify-between">
-                        <p class="text-xs font-bold text-slate-800"><i class="fa-solid fa-credit-card text-brand-navy"></i> Opção 2: Plano Anual (Cartão)</p>
-                        <span class="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2 py-0.5 rounded-full">Pague 12, Leve 13 (1 Mês Grátis)</span>
-                    </div>
-                    <p class="text-[11px] text-slate-600">
-                        Parcele o plano anual em até 03x sem juros ou até 12x com acréscimo da operadora e ganhe 1 mês de acesso grátis:
-                    </p>
-                    <a id="credit-link-btn" href="#" target="_blank" class="w-full bg-brand-navy hover:bg-blue-900 text-white text-xs font-semibold py-2.5 px-4 rounded-lg flex items-center justify-center space-x-2 transition">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        <span>Pagar Plano Anual</span>
-                    </a>
-                </div>
-
-                <p class="text-[11px] text-amber-800 leading-tight pt-1">
-                    Após realizar o pagamento, envie o comprovante para o WhatsApp abaixo. Em até 24h seu acesso será liberado.
-                </p>
-                <div class="pt-1">
-                    <a id="whatsapp-link" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold py-2.5 px-4 rounded-lg flex items-center justify-center space-x-2 transition">
-                        <i class="fa-brands fa-whatsapp text-sm"></i>
-                        <span>Enviar Comprovante via WhatsApp</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Box Associado -->
-            <div id="associado-container" class="hidden bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6 text-left space-y-2">
-                <div class="flex items-center space-x-2 text-blue-900 font-bold text-sm">
-                    <i class="fa-solid fa-shield-check text-blue-600"></i>
-                    <span>Desconto em Folha Autorizado</span>
-                </div>
-                <p class="text-xs text-blue-800 leading-relaxed">
-                    Sua solicitação de mensalidade (R$ 12,90 via desconto em folha) foi registrada. O benefício será liberado em até 24h após validação com o setor competente do sindicato.
-                </p>
-            </div>
-
-            <button onclick="goToCapa()" class="w-full bg-slate-100 hover:bg-slate-200 text-brand-navy font-semibold py-3 px-6 rounded-xl transition text-sm">
+            <button onclick="goToCapa()" class="w-full bg-brand-navy hover:bg-blue-900 text-white font-semibold py-3 px-6 rounded-xl transition text-sm">
                 Voltar à Página Inicial
             </button>
         </div>
@@ -319,15 +262,16 @@
     <!-- JavaScript Principal -->
     <script>
         // =====================================================================
-        // CONFIGURAÇÕES INTERNAS (PREENCHA SEUS DADOS REAIS AQUI ANTES DE SUBIR)
+        // CONFIGURAÇÕES INTERNAS (PREENCHA SEUS DADOS REAIS ANTES DE SUBIR)
         // =====================================================================
         const CONFIG = {
             webhookUrl: '', // Cole aqui a URL do Google Apps Script / Webhook do Google Sheets
-            pixKey: '63643418000137', // Cole aqui a Chave PIX
-            creditLink: 'https://link.infinitepay.io/werner-splett/VC1DLTMtSQ-u5LGSEev8s-179,00', // Cole aqui o link da InfinityPay
-            whatsappNum: '554198301958', // Cole aqui o WhatsApp com 55 + DDD + Número (somente números)
+            associationUrl: 'https://sspad.tecnotins.com.br/DataSind/ws/filiacao-online.jsf', // Link do botão "Clique aqui para se associar"
             portalUrl: 'https://medqualividatelemedicina.lsxmedical.com/'
         };
+
+        // Inicializa o link de associação no botão
+        document.getElementById('association-btn').href = CONFIG.associationUrl;
 
         function goToPortal() {
             window.open(CONFIG.portalUrl, '_blank');
@@ -355,19 +299,19 @@
             const radioNao = document.getElementById('associado_nao');
             const cardSim = document.getElementById('card_associado_sim');
             const cardNao = document.getElementById('card_associado_nao');
+            const matriculaInput = document.getElementById('matricula');
             const checkSim = document.getElementById('autorizacao_desconto');
-            const checkNao = document.getElementById('ciencia_pix');
 
             if (radioSim.checked) {
                 cardSim.classList.remove('hidden');
                 cardNao.classList.add('hidden');
+                matriculaInput.required = true;
                 checkSim.required = true;
-                checkNao.required = false;
-                checkNao.checked = false;
             } else if (radioNao.checked) {
                 cardNao.classList.remove('hidden');
                 cardSim.classList.add('hidden');
-                checkNao.required = true;
+                matriculaInput.required = false;
+                matriculaInput.value = '';
                 checkSim.required = false;
                 checkSim.checked = false;
             }
@@ -434,6 +378,7 @@
             const formData = {
                 subdominioDaClinica: subdominio,
                 souAssociado: isAssociado ? 'Sim' : 'Não',
+                matriculaSSPAD: isAssociado ? document.getElementById('matricula').value.trim() : 'N/A',
                 nome: document.getElementById('nome').value.trim(),
                 sobrenome: document.getElementById('sobrenome').value.trim(),
                 cpf: document.getElementById('cpf').value.trim(),
@@ -449,7 +394,6 @@
                 cidade: document.getElementById('cidade').value.trim(),
                 estado: document.getElementById('estado').value.trim(),
                 autorizacaoDescontoFolha: isAssociado ? 'Sim' : 'N/A',
-                cienciaPagamentoPix: !isAssociado ? 'Sim' : 'N/A',
                 dataCadastro: new Date().toISOString()
             };
 
@@ -472,42 +416,15 @@
                 }
             }
 
-            // Transição para tela de sucesso
+            // Transição para tela de sucesso unificada
             setTimeout(() => {
                 btnText.textContent = 'Enviar Cadastro';
                 btnSpinner.classList.add('hidden');
 
                 document.getElementById('screen-form').classList.add('hidden');
                 document.getElementById('screen-success').classList.remove('hidden');
-
-                const pixContainer = document.getElementById('pix-container');
-                const associadoContainer = document.getElementById('associado-container');
-                const successMessage = document.getElementById('success-message');
-
-                if (isAssociado) {
-                    pixContainer.classList.add('hidden');
-                    associadoContainer.classList.remove('hidden');
-                    successMessage.textContent = 'Cadastro de associado efetuado com sucesso!';
-                } else {
-                    associadoContainer.classList.add('hidden');
-                    pixContainer.classList.remove('hidden');
-                    successMessage.textContent = 'Cadastro efetuado! Resta apenas a confirmação do pagamento.';
-                    
-                    document.getElementById('display-pix').textContent = CONFIG.pixKey;
-                    document.getElementById('credit-link-btn').href = CONFIG.creditLink;
-                    
-                    let msgZap = encodeURIComponent(`Olá, realizei meu cadastro de não associado no app SSPAD Telemedicina (Nome: ${formData.nome} ${formData.sobrenome}, CPF: ${formData.cpf}). Segue o comprovante.`);
-                    document.getElementById('whatsapp-link').href = `https://wa.me/${CONFIG.whatsappNum}?text=${msgZap}`;
-                }
                 window.scrollTo(0, 0);
             }, 1000);
-        }
-
-        function copiarChavePix() {
-            const chave = document.getElementById('display-pix').textContent;
-            navigator.clipboard.writeText(chave).then(() => {
-                alert('Chave PIX copiada para a área de transferência!');
-            });
         }
     </script>
 </body>
